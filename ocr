@@ -8,4 +8,4 @@ dir="$(dirname "$script_path")"
 # shellcheck disable=1090
 source "${dir}/.venv/bin/activate"
 
-exec python "app.py" "$@"
+exec python "${dir}/app.py" "$@"
