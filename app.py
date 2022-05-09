@@ -38,10 +38,11 @@ def remove_blank_lines(s: str) -> str:
 @click.argument('layout', type=int, default=12)
 @click.argument('lang', type=str, default='jpn')
 @click.option('--cleanup', type=bool, default=True)
-def main(image_path: str, layout: int, lang: str, cleanup: bool) -> None:
+@click.option('--language', type=str, default='jpn')
+def main(image_path: str, layout: int, lang: str, cleanup: bool, language: str) -> None:
     image = Image.open(image_path)
     builder = pyocr.builders.TextBuilder(tesseract_layout=layout)
-    text = ocr.image_to_string(image, lang='jpn', builder=builder)
+    text = ocr.image_to_string(image, lang=language, builder=builder)
     if cleanup:
         text = remove_mysterious_spaces(text)
         text = remove_blank_lines(text)
